@@ -84,4 +84,33 @@ void __fastcall TForm1::recursionvectores2Click(TObject *Sender)
 	 int n=sgrid->ColCount;
 	 cargar(sgrid,n);
 }
+void cargar(TStringGrid *v,int n){
+	  if (n>0) {
+		cargar(v,n-1);
+        v->Cells[n-1][0] = Random(20);
+	  }
+}
+void invertir(TStringGrid *v,int a,int b){
+   if (a<b) {
+	 int aux =StrToInt(v->Cells[a][0]);
+	 v->Cells[a][0] = StrToInt(v->Cells[b][0]);
+	 v->Cells[b][0] = aux;
+	 invertir(v,a+1,b-1);
+   }
+}
+void intercambiar(TStringGrid *v,int i,int j){
+	 int aux =StrToInt(v->Cells[i][0]);
+	 v->Cells[i][0] =StrToInt(v->Cells[j][0]);
+	 v->Cells[j][0] =aux;
+}
+void BubbleSort(TStringGrid *v,int a,int b){
+	if (a<b) {
+	  if (StrToInt(v->Cells[a][0])>StrToInt(v->Cells[a+1][0])) {
+		int aux =StrToInt(v->Cells[a][0]);
+		v->Cells[a][0]=StrToInt(v->Cells[a+1][0]);
+		v->Cells[a+1][0] =aux ;
+		BubbleSort(v,a+1,b);
+	  }else BubbleSort(v,a+1,b);
+	}
+}
 //---------------------------------------------------------------------------
