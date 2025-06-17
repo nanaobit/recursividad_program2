@@ -103,14 +103,20 @@ void intercambiar(TStringGrid *v,int i,int j){
 	 v->Cells[i][0] =StrToInt(v->Cells[j][0]);
 	 v->Cells[j][0] =aux;
 }
-void BubbleSort(TStringGrid *v,int a,int b){
-	if (a<b) {
-	  if (StrToInt(v->Cells[a][0])>StrToInt(v->Cells[a+1][0])) {
-		int aux =StrToInt(v->Cells[a][0]);
-		v->Cells[a][0]=StrToInt(v->Cells[a+1][0]);
-		v->Cells[a+1][0] =aux ;
-		BubbleSort(v,a+1,b);
-	  }else BubbleSort(v,a+1,b);
-	}
+void burbujear(TStringGrid *v,int n){
+   if (n>1) {
+	 burbujear(v,n-1);
+	 if (StrToInt(v->Cells[n-2][0])>StrToInt(v->Cells[n-1][0])) {
+		int aux=StrToInt(v->Cells[n-2][0]);
+		v->Cells[n-2][0] =StrToInt(v->Cells[n-1][0]);
+		v->Cells[n-1][0] =aux;
+	 }
+   }
+}
+void bubleSort(TStringGrid *v,int n){
+	 if (n>1) {
+	   burbujear(v,n);
+	   bubleSort(v,n-1);
+	 }
 }
 //---------------------------------------------------------------------------
